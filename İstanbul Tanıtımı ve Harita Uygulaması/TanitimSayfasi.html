@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İstanbul Tanıtımı</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        *{
+            background-color: #520D0D;
+        }
+        #yerebatan{
+            background-image: url("img/yerebatan.jpg");
+            background-repeat: no-repeat; 
+            background-size: cover; /* Resmin boyutunu kapsaması için */
+            background-position: center;
+            position: absolute;
+            width: 442px;
+            height: 294px;
+            left: 837px; /* X Koordinatı */
+            top: 59px;   /* Y Koordinatı */
+            display: flex; 
+            flex-direction: column; /* Dikey hizalama yapar */
+            justify-content: center; 
+            align-items: center; 
+            position: absolute;
+        }
+        #topkapi{
+            background-image: url("img/topkapı.jpg");
+            background-repeat: no-repeat; 
+            background-size: cover; 
+            background-position: center;
+            position: absolute;
+            width: 442px;
+            height: 294px;
+            left: 217px;
+            top: 353px;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            position: absolute;
+        }
+        #pera{
+            background-image: url("img/pera.jpg");
+            background-repeat: no-repeat; 
+            background-size: cover; 
+            background-position: center;
+            position: absolute;
+            width: 442px;
+            height: 294px;
+            left: 837px;
+            top: 647px;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            position: absolute;
+        }
+        h1{
+            color: white;
+            font-size: 36px;
+            position: absolute;
+            left: 170px;
+            top: 24px;
+        }
+        #yerebatan p{
+            color: white;
+            text-align: center;
+            display: none;
+            background-color: rgba(0, 0, 0, 0.2); /* Arka plan rengi */
+        }
+        #topkapi p{
+            color: white;
+            text-align: center;
+            display: none; 
+            background-color: rgba(0, 0, 0, 0.2); 
+        }
+        #pera p{
+            color: white;
+            text-align: center;
+            display: none; 
+            background-color: rgba(0, 0, 0, 0.2); 
+        }
+        a{
+            text-decoration: none;
+            color: white;
+            background-color: #2C2C2C;
+        }
+        #change{
+            background-color: #520D0D;
+            width: 218px;
+            height: 103px;
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            position: absolute; 
+            left: 222px;
+            top: 807px;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Kısa Bir İstanbul Tanıtımı</h1>
+    <div id="yerebatan"> 
+       <p>Yerebatan Sarnıcı İmparator loustinianos döneminde 
+        İstanbul'da şehrin su ihtiyacını karşılamak üzere 526-527 senelerinde 
+        yaptırılmış kapalı su sarnıcıdır.</p>
+    </div>
+
+    <div id="topkapi"> 
+        <p>Topkapı Sarayı, İstanbul Sarayburnu'nda, Osmanlı İmparatorluğu'nun 600 yıllık tarihinin 
+            400 yılı boyunca, devletin idare merkezi olarak kullanılan ve 
+            Osmanlı padişahlarının yaşadığı saraydır. </p>
+     </div>
+
+     <div id="pera"> 
+        <p>Cadde-i Kebir, Grande Rue de Pera, Pera veya Beyoğlu… Hangi isimle anılırsa anılsın 
+            Pera, 19. Yüzyıl ortalarına kadar Osmanlı’nın gayrimüslim vatandaşlarının yaşadığı, birkaç elçiliğin olduğu bir yerken; 
+            Tanzimat sonrası eğlence yerlerine, lüks mağazalara, ticarethanelere, 
+            restoranlara, otellere, pastanelere ev sahipliği yapmıştır ve daha pek çok şeyin çekim merkezi haline gelmiştir.</p>
+     </div>
+     <div id="change">
+        <button type="button" class="btn btn-success" style="background-color: #2C2C2C; border-radius: 2px solid; border-color: #2C2C2C;"><a href="Map.html" class="btn-success" target="_blank" style="background-color: #2C2C2C; border-radius: 2px solid; border-color: #2C2C2C;">İstanbul'da Konum Bul</a></button>
+     </div>
+     
+    
+
+
+
+    <script>
+        $(document).ready(function(){
+            $("#yerebatan").mousemove(function(){
+               $("#yerebatan").css({"opacity": "0.3"})
+               $("#yerebatan p").css({"display" : "block", "opacity" : "1"})
+            })
+            $("#yerebatan").mouseleave(function(){
+               $("#yerebatan").css({"opacity": "1"})
+               $("#yerebatan p").css({"display" : "none"})
+            })
+
+            $("#topkapi").mousemove(function(){
+               $("#topkapi").css({"opacity": "0.3"})
+               $("#topkapi p").css({"display" : "block", "opacity" : "1"})
+            })
+            $("#topkapi").mouseleave(function(){
+               $("#topkapi").css({"opacity": "1"})
+               $("#topkapi p").css({"display" : "none"})
+            })
+
+            $("#pera").mousemove(function(){
+               $("#pera").css({"opacity": "0.3"})
+               $("#pera p").css({"display" : "block", "opacity" : "1"})
+            })
+            $("#pera").mouseleave(function(){
+               $("#pera").css({"opacity": "1"})
+               $("#pera p").css({"display" : "none"})
+            })
+        })
+    </script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" 
+integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" 
+integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
+</html>

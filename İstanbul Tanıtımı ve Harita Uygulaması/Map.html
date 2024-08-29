@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Harita</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <style>
+        *{
+            background-color: #520D0D;
+
+        }
+        input{
+            background-color: white;
+            width: 563px;
+            height: 47px;
+            left: 364px;
+            top: 272px;
+            position: absolute;
+        }
+        button{
+            height: 47px;
+            width: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            left: 951px;
+            top: 272px;
+            position: absolute;
+        }
+        h1{
+            font-size: 36px;
+            color: white;
+            position: absolute;
+            left: 329px;
+            top: 125px;
+        }
+        #map{
+            position: absolute;
+            width: 660px;
+            height: 426px;
+            left: 341px;
+            top: 392px;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <h1>İstanbul'da Gitmek İstediğiniz Adresi Girin</h1>
+    <div>
+        <input type="text" placeholder="Konum girin" id="location">
+        <button style="background-color: #2C2C2C;"><i style="font-size:16px; color: white; background-color: #2C2C2C;" class="fa" onclick="ara()">&#xf002;</i></button>
+    </div>
+    <div id="map"></div>
+
+    <script>
+        var map = L.map('map').setView([51.505, -0.09], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        function ara() {
+            var location = document.getElementById('location').value;
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${location}&limit=1&addressdetails=1`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        var lat = parseFloat(data[0].lat);
+                        var lon = parseFloat(data[0].lon);
+
+                         // İstanbul'un yaklaşık sınırları
+                         var istanbulBounds = {
+                            north: 41.3200,
+                            south: 40.8020,
+                            west: 28.4480,
+                            east: 29.4560
+                        };
+
+                        if (lat >= istanbulBounds.south && lat <= istanbulBounds.north && lon >= istanbulBounds.west && lon <= istanbulBounds.east) {
+                            var marker = L.marker([lat, lon]).addTo(map)
+                                .bindPopup(`Girilen konum: ${location}`).openPopup();
+                            map.setView([lat, lon], 13);
+                        } else {
+                            alert("Girilen konum İstanbul sınırları içinde değil.");
+                        }
+                    } else {
+                        alert("Konum bulunamadı.");
+                    }
+                })
+                .catch(error => {
+                    $("#map").css({"display":"none"});
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+    
+
+</body>
+</html>
